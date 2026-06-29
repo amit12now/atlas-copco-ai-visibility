@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+.DS_Store
+
+# Raw monthly export files (not read by the deployed app -- only the
+# Clean_* sheets inside AI_Visibility_Tracking_Template.xlsx are used).
+# Keep these locally for monthly refreshes; no need to publish them.
+AI-Performanc-GSC.xlsx
+AI-Traffic-analytics.xlsx
+AI-overviews-SEMRUSH.xls
+gsc-AIO-Comparison.xlsx
+brand_topics_*.csv
+chatgpt_results_*.csv
+gap_prompts_*.csv
+prompts_*.csv
