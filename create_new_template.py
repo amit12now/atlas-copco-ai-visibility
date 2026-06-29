@@ -16,7 +16,9 @@ folder) and loads whatever it finds (all are optional):
   gsc-AIO-Comparison.xlsx    (Pages)         -> RAW_GSC_Pages
   gsc-AIO-Comparison.xlsx    (Countries)     -> RAW_GSC_Countries
   gsc-AIO-Comparison.xlsx    (Devices)       -> RAW_GSC_Devices
-  (falls back to AI-Performanc-GSC.xlsx if gsc-AIO-Comparison.xlsx isn't found)
+  ("AIO" = AI Overview: this is Search Console's AI Overviews / AI Mode
+  reporting, not the classic web-search Performance report. Falls back to
+  AI-Performanc-GSC.xlsx if gsc-AIO-Comparison.xlsx isn't found.)
 
 Note: there is no RAW_Gap_Topics / RAW_Sources source for this client (the
 Gap Topics export we received is prompt-level, not topic-level, and no

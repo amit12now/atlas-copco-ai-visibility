@@ -32,14 +32,16 @@ NOTES ON THIS CLIENT'S EXPORT SHAPES (vs. the original template):
     string like "June 2026*" for the current (partial) month, no "(domain)"
     suffixes on the platform columns, and an extra "Total AI (Top 3)" column
     that must be dropped before unpivoting.
-  - RAW_GSC_Pages/Countries/Devices (gsc-AIO-Comparison.xlsx) are filtered to
-    the /compressors site section and have two columns shaped like
-    "6/1/26 - 6/26/26 Impressions" / "5/1/26 - 5/26/26 Impressions" -- a real
-    current-period-vs-prior-period comparison, just not labeled "Last 28" /
-    "Previous 28" like the original template's source. transform_gsc() parses
-    the start date in each such column to tell current from prior. Falls back
-    to a single "Impressions" column (Change_Pct left blank) if an export
-    without a comparison is used instead.
+  - RAW_GSC_Pages/Countries/Devices (gsc-AIO-Comparison.xlsx) come from Search
+    Console's AI Overviews / AI Mode reporting (NOT classic web search --
+    "AIO" = AI Overview), filtered to the /compressors site section. They
+    have two columns shaped like "6/1/26 - 6/26/26 Impressions" /
+    "5/1/26 - 5/26/26 Impressions" -- a real current-period-vs-prior-period
+    comparison, just not labeled "Last 28" / "Previous 28" like the original
+    template's source. transform_gsc() parses the start date in each such
+    column to tell current from prior. Falls back to a single "Impressions"
+    column (Change_Pct left blank) if an export without a comparison is used
+    instead.
 """
 import sys
 import re
@@ -376,8 +378,10 @@ def transform_ga4(raw, report_month):
 
 
 # --------------------------------------------------------------------------
-# Transform: GSC (Pages / Countries / Devices -> one long table)
-#   gsc-AIO-Comparison.xlsx has two columns shaped like
+# Transform: GSC AI Overviews / AI Mode (Pages / Countries / Devices -> one long table)
+#   gsc-AIO-Comparison.xlsx is exported from Search Console's AI Overviews /
+#   AI Mode reporting ("AIO" = AI Overview), not the classic web-search
+#   Performance report. It has two columns shaped like
 #   "6/1/26 - 6/26/26 Impressions" (current period) and
 #   "5/1/26 - 5/26/26 Impressions" (prior period) -- a real comparison, just
 #   not labeled "Last 28" / "Previous 28" like the original template's

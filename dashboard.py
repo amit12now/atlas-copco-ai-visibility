@@ -515,7 +515,7 @@ if ga_prev is not None:
 tab_overview, tab_rankings, tab_topics, tab_chatgpt, tab_traffic, tab_gsc = st.tabs(
     ["\U0001F3E0 Overview", "\U0001F50E AI Search Rankings", "\U0001F9E0 Topics & Prompts",
      "\U0001F4AC ChatGPT Spot-Checks", "\U0001F4C8 Website Traffic",
-     "\U0001F30D Google Search"]
+     "\U0001F30D Google AI Search"]
 )
 
 # --------------------------------------------------------------- OVERVIEW
@@ -757,9 +757,9 @@ with tab_traffic:
         by_platform = ga_now.groupby("Platform")["Sessions"].sum().sort_values(ascending=False)
         donut_chart(list(by_platform.index), by_platform.values.tolist())
 
-# ---------------------------------------------------------- GOOGLE SEARCH (GSC)
+# ---------------------------------------------------- GOOGLE AI OVERVIEWS (GSC)
 with tab_gsc:
-    section_title("Classic Google Search performance", "How often your pages appeared in regular (non-AI) Google search results over the last 28 days.")
+    section_title("Google AI Overviews & AI Mode performance", "How often your pages appeared in Google's AI Overviews and AI Mode results (Search Console's AI search reporting) over the last 28 days.")
     gsc_now, _ = latest_slice(gsc, "Report_Month")
     if gsc_now.empty:
         empty_note("No Search Console data yet.")
@@ -774,7 +774,7 @@ with tab_gsc:
 
         col1, col2 = st.columns(2)
         with col1:
-            section_title("Where in the world people find you", "Countries generating the most Google search impressions in the last 28 days.")
+            section_title("Where in the world people find you", "Countries generating the most AI Overview / AI Mode impressions in the last 28 days.")
             countries = gsc_now[gsc_now["Dimension_Type"] == "Country"].sort_values("Impressions_Last_28d", ascending=False)
             if countries.empty:
                 empty_note("No country-level Search Console data yet.")
@@ -788,7 +788,7 @@ with tab_gsc:
                     values.append(int(other_sum))
                 donut_chart(labels, values)
         with col2:
-            section_title("What device people search from", "Google search impressions in the last 28 days, by device type.")
+            section_title("What device people search from", "AI Overview / AI Mode impressions in the last 28 days, by device type.")
             devices = gsc_now[gsc_now["Dimension_Type"] == "Device"].sort_values("Impressions_Last_28d", ascending=False)
             if devices.empty:
                 empty_note("No device-level Search Console data yet.")
